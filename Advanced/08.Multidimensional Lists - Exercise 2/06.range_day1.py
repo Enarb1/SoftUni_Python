@@ -30,7 +30,6 @@ targets = 0
 targets_hit = 0
 targets_hit_pos = []
 
-
 directions = {
     'up': (-1, 0),
     'down': (1, 0),
