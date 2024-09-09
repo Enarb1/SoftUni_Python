@@ -1,30 +1,26 @@
-from collections import deque
+def draw_cards(*args, **kwargs):
+    monsters = []
+    spells = []
 
-packages = [int(x) for x in input().split()]
-courier_capacity = deque(int(x) for x in input().split())
+    for name, card_type in (list(args) + list(kwargs.items())):
+        if card_type == 'monster':
+            monsters.append(f"  ***{name}")
+        elif card_type == 'spell':
+            spells.append(f"  $$${name}")
 
-total_weight = 0
+    monsters = sorted(monsters, reverse=True)
+    spells = sorted(spells)
 
-while packages and courier_capacity:
-    package = packages.pop()
-    courier = courier_capacity.popleft()
+    result = ""
+    if monsters:
+        result += "Monster cards:\n" + '\n'.join(monsters)
+    if spells:
+        result += "\nSpell cards:\n" + '\n'.join(spells)
 
-    if courier >= package:
-        if courier > package:
-            new_courier = courier - (package * 2)
-            if new_courier > 0:
-                courier_capacity.append(new_courier)
-        total_weight += package
-    else:
-        packages.append(package - courier)
-        total_weight += courier
+    return result
 
-print(f"Total weight: {total_weight} kg")
-if not packages and not courier_capacity:
-    print("Congratulations, all packages were delivered successfully by the couriers today.")
-elif packages and len(courier_capacity) == 0:
-    print(f"Unfortunately, there are no more available couriers to deliver the following packages:"
-          f" {', '.join(str(x) for x in packages)}")
-elif courier_capacity and len(packages) == 0:
-    print(f"Couriers are still on duty:  {', '.join(str(x) for x in courier_capacity)}but there are no more packages "
-          f"to deliver.")
+
+
+#print(draw_cards(("brave attack", "spell"), ("freeze", "spell"), lightning_bolt="spell", fireball="spell",))
+print(draw_cards(("celtic guardian", "monster"), ("earthquake", "spell"), ("fireball", "spell"), raigeki="spell", destroy="spell",))
+#print(draw_cards(("cyber dragon", "monster"), freeze="spell",))

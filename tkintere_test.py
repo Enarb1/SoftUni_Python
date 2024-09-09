@@ -11,7 +11,7 @@ def validate_email():
     invalid_label.place_forget()
     valid_label.place_forget()
     if re.match(email_pattern, email):
-        valid_label.place(x=200, y=200)
+        valid_label.place(x=130, y=125)
     else:
         invalid_label.place(x=130, y=125)
 
