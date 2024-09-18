@@ -1,36 +1,37 @@
-from collections import deque
+def print_result(cuisines):
+    result = []
+
+    for cus_n, recept in cuisines.items():
+        result.append(f"{cus_n} cuisine contains {len(cuisines[cus_n])} recipes:")
+        for rcpt_n, ingr in recept.items():
+            result.append(f"  * {rcpt_n} -> Ingredients: {', '.join(ingr)}")
+
+    return result
 
 
-def print_result(food_count):
-    if food_count == 0:
-        return "Henry remained hungry. He will try next weekend again."
-    elif food_count >= 4:
-        return f"Gluttony of the day! Henry ate {food_count} foods."
-    else:
-        return f"Henry ate: {food_count} food{'s' if food_count != 1 else ''}."
+def get_cuisines(*info):
+    cuisines = {}
+
+    for elements in sorted(info):
+        recept_name, cuisine_name, ingredients = elements
+        if cuisine_name not in cuisines:
+            cuisines[cuisine_name] = {}
+        cuisines[cuisine_name][recept_name] = ingredients
+
+    return dict(sorted(cuisines.items(), key=lambda kvp: (-len(kvp[1]), kvp[0])))
 
 
-def add_food_count(food_count):
-    food_count += 1
-    return food_count
+def cookbook(*recopies):
+    cuisines = get_cuisines(*recopies)
+    final_print = print_result(cuisines)
+
+    return '\n'.join(final_print)
 
 
-money = [int(x) for x in input().split()]
-foods = deque(map(int, input().split()))
-
-food_ate_count = 0
-while money and foods:
-
-    cash = money.pop()
-    food_price = foods.popleft()
-
-    if cash > food_price:
-        food_ate_count = add_food_count(food_ate_count)
-        spare_change = cash - food_price
-        if money:
-            money[-1] += spare_change
-    elif cash == food_price:
-        food_ate_count = add_food_count(food_ate_count)
-        spare_change = 0
-
-print(print_result(food_ate_count))
+print(cookbook(
+    ("Spaghetti Bolognese", "Italian", ["spaghetti", "tomato sauce", "ground beef"]),
+    ("Margherita Pizza", "Italian", ["pizza dough", "tomato sauce", "mozzarella"]),
+    ("Tiramisu", "Italian", ["ladyfingers", "mascarpone", "coffee"]),
+    ("Croissant", "French", ["flour", "butter", "yeast"]),
+    ("Ratatouille", "French", ["eggplant", "zucchini", "tomatoes"])
+))
