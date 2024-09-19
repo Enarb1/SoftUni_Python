@@ -12,4 +12,4 @@ for _ in range(n):
 
 for student, grades in students.items():
     avg = sum(grades) / len(grades)
-    print(f'{student} -> {' '.join([f'{g:.2f}' for g in grades])} (avg: {avg:.2f})')
+    print(f"{student} -> {' '.join([f'{g:.2f}' for g in grades])} (avg: {avg:.2f})")

@@ -13,7 +13,7 @@ for _ in range(n):
 if parking:
     print(*parking, sep='\n')
 else:
-    print(f'Parking Lot is Empty')
+    print("Parking Lot is Empty")
 
 """"From the lecture:"""
 
