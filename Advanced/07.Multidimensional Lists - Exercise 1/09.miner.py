@@ -13,7 +13,7 @@ directions = {
 }
 
 for row in range(size):
-    matrix.append(list(input()))
+    matrix.append(input().split())
 
     if 's' in matrix[row]:
         miner_pos = [row, matrix[row].index('s')]

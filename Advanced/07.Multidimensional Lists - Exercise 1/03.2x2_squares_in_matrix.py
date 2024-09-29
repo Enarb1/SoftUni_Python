@@ -7,8 +7,8 @@ matrix = [[el for el in input().split()]for row in range(rows)]
 
 same_count = 0
 
-for row_i in range(rows -1):
-    for col_i in range(columns -1):
+for row_i in range(rows - 1):
+    for col_i in range(columns - 1):
         main_el = matrix[row_i][col_i]
         right_el = matrix[row_i][col_i + 1]
         down_el = matrix[row_i + 1][col_i]
