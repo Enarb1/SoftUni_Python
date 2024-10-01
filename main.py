@@ -1,30 +1,39 @@
-def result_print(chosen_sets):
-    result = f"Sets to take ({len(chosen_sets)}):\n"
+from collections import deque
 
-    for i in range(len(chosen_sets)):
-        chosen_sets[i] = sorted(chosen_sets[i])
+fuel = [int(f) for f in input().split()]
+additional_fuel = deque([int(a) for a in input().split()])
+amount_needed = deque(int(l) for l in input().split())
 
-    for s in chosen_sets:
-        result += "{ " + ', '.join(str(x) for x in s) + " }\n"
-
-    return result
+current_latitude = 0
+reached = []
 
 
-def set_cover(universe, sets_input):
-    chosen_sets = []
+while amount_needed:
+    current_latitude += 1
+    current_fuel = fuel.pop()
+    current_add_fuel = additional_fuel.popleft()
+    needed = amount_needed.popleft()
 
-    while universe:
-        best_set = max(sets_input, key=lambda s: len(universe.intersection(s)))
-        chosen_sets.append(best_set)
-        universe -= best_set
+    result = current_fuel - current_add_fuel
 
-    return result_print(chosen_sets)
+    if result >= needed:
+        reached.append(f"Altitude {current_latitude}")
+        print(f"John has reached: {reached[-1]}")
+    else:
+        amount_needed.appendleft(needed)
+        print(f"John did not reach: Altitude {current_latitude}")
+        break
+
+if amount_needed:
+    print("John failed to reach the top.")
+    if len(reached) == 0:
+        print("John didn't reach any altitude.")
+    else:
+        print(f"Reached altitudes: {', '.join(reached)}")
+else:
+    print("John has reached all the altitudes and managed to reach the top!")
 
 
-universe = {int(x) for x in input().split(", ")}
-numbers_of_sets = int(input())
-sets_input = [{int(x) for x in input().split(", ")} for _ in range(numbers_of_sets)]
 
-print(set_cover(universe, sets_input))
 
 
