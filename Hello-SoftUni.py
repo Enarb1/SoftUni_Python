@@ -1,8 +1,7 @@
-a = "S---9"
+a = [24, 28, 18, 30]
 
-l = []
+if 30 in a:
+    a.remove(30)
 
-for i in a:
-    l.append(i)
 
-print(l)
+print(a)
