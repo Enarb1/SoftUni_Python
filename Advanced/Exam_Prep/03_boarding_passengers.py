@@ -17,17 +17,18 @@ def boarding_passengers(initial_capacity,*passenger_groups ):
     boarded_passengers = sum(boarded.values())
 
     message = "Boarding details by benefit plan:\n"
-    message += '\n'.join(f"## {plan}: {number} guests" for plan, number in passengers_sorted)
+    for plan, number in passengers_sorted:
+        message += f"## {plan}: {number} guests\n"
 
     if total_passengers == boarded_passengers:
-        message += "\nAll passengers are successfully boarded!"
+        message += "All passengers are successfully boarded!"
     elif capacity == 0:
-        message += "\nBoarding unsuccessful. Cruise ship at full capacity."
+        message += "Boarding unsuccessful. Cruise ship at full capacity."
     else:
-        message += f"\nPartial boarding completed. Available capacity: {capacity}."
+        message += f"Partial boarding completed. Available capacity: {capacity}."
 
     return message
 
+print(boarding_passengers(5, (10, 'Diamond'), (20, 'Platinum'),
+                          (10, 'Gold'), (20, 'First Cruiser'), (10, 'Diamond'), (10, 'Gold')))
 print(boarding_passengers(150, (35, 'Diamond'), (55, 'Platinum'), (35, 'Gold'), (25, 'First Cruiser')))
-print(boarding_passengers(100, (20, 'Diamond'), (15, 'Platinum'), (25, 'Gold'), (25, 'First Cruiser'), (15, 'Diamond'), (10, 'Gold')))
-print(boarding_passengers(120, (30, 'Gold'), (20, 'Platinum'), (30, 'Diamond'), (10, 'First Cruiser'), (31, 'Platinum'), (20, 'Diamond')))
