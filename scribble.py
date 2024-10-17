@@ -1,16 +1,16 @@
-n = 50
 
-mapper = {
-    (0, 60): "Darth Vader Ducky",
-    (61, 120): "Thor Ducky",
-    (121, 180): "Big Blue Rubber Ducky",
-    (181, 240): "Small Yellow Rubber Ducky"
-}
+n = [(1, 0), (3, 1)]
 
 
-for (start, end), key in mapper.items():
-    if start <= n <= end:
-        print(key)
+r = 1
+c = 0
+
+if (r, c) in n:
+    n.remove((r, c))
+
+print(n)
+
+
 
 
 
