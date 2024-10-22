@@ -79,8 +79,6 @@ def pawn_wars():
                   f"at {columns[player_pos[1]]}{rows[player_pos[0]]}.")
             break
 
-
-
         turns.rotate()
 
 pawn_wars()
