@@ -1,5 +1,5 @@
 from unittest import TestCase, main
-# from OOP.Testing.CarManager.car_manager import Car
+from OOP.Testing.CarManager.car_manager import Car
 
 class TestCar(TestCase):
 
