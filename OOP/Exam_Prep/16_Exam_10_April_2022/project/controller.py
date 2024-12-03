@@ -50,13 +50,12 @@ class Controller:
         self.__feed_players()
 
     def __str__(self):
-        result = []
+        info = []
         for p in self.players:
-            result.append(p.__str__())
+            info.append(p.__str__())
         for s in self.supplies:
-            result.append(s.details())
-
-        return "\n".join(result)
+            info.append(s.details())
+        return "\n".join(info)
 
     @staticmethod
     def __fight(first_attacker, second_attacker):
@@ -87,7 +86,7 @@ class Controller:
             return '\n'.join(result)
 
     def __get_supply(self, sustenance_type):
-        for i in range(len(self.supplies) - 1, 0, -1):
+        for i in range(len(self.supplies) - 1, 1, -1):
             if type(self.supplies[i]).__name__ == sustenance_type:
                 return self.supplies.pop(i)
         raise Exception(f"There are no {sustenance_type} supplies left!")
@@ -106,4 +105,3 @@ class Controller:
         for p in self.players:
             self.sustain(p.name, "Food")
             self.sustain(p.name, "Drink")
-
