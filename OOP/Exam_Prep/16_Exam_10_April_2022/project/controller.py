@@ -6,6 +6,10 @@ from project.supply.food import Food
 
 class Controller:
     VALID_SUPPLY_TYPES = ["Food", "Drink"]
+    EXCEPTION_FOOD_DRINK = {
+        "Food": "food",
+        "Drink": 'drink'
+    }
 
     def __init__(self):
         self.players: list = []
@@ -89,7 +93,7 @@ class Controller:
         for i in range(len(self.supplies) - 1, 1, -1):
             if type(self.supplies[i]).__name__ == sustenance_type:
                 return self.supplies.pop(i)
-        raise Exception(f"There are no {sustenance_type} supplies left!")
+        raise Exception(f"There are no {self.EXCEPTION_FOOD_DRINK[sustenance_type]} supplies left!")
 
     def __get_player(self, player_name):
         return next((p for p in self.players if p.name == player_name), None)
