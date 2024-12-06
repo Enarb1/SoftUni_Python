@@ -52,7 +52,7 @@ class Controller:
             aquarium.add_decoration(decoration)
             self.decorations_repository.remove(decoration)
             return f"Successfully added {decoration.__class__.__name__} to {aquarium.name}."
-        if decoration is None:
+        if aquarium is not None and decoration is None:
             return f"There isn't a decoration of type {decoration_type}."
 
     def add_fish(self, aquarium_name: str, fish_type: str, fish_name: str, fish_species: str, price: float):

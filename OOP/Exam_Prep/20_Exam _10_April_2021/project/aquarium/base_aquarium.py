@@ -25,7 +25,7 @@ class BaseAquarium(ABC):
         return sum(d.comfort for d in self.decorations)
 
     def add_fish(self, fish: BaseFish):
-        if len(self.fish) == self.capacity:
+        if len(self.fish) >= self.capacity:
             return "Not enough capacity."
         self.fish.append(fish)
         return f"Successfully added {fish.__class__.__name__} to {self.name}."
@@ -48,3 +48,4 @@ class BaseAquarium(ABC):
                 f"Fish: {fish_names}\n"
                 f"Decorations: {len(self.decorations)}\n"
                 f"Comfort: {self.calculate_comfort()}")
+
