@@ -15,4 +15,4 @@ class DecorationRepository:
         return False
 
     def find_by_type(self, decoration_type: str):
-        return next((d for d in self.decorations if d.__class__.__name__ == decoration_type), None)
+        return next((d for d in self.decorations if d.__class__.__name__ == decoration_type), "None")
