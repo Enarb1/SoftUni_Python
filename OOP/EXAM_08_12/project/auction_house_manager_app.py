@@ -19,7 +19,6 @@ class AuctionHouseManagerApp:
     def __init__(self):
         self.artifacts: list = []
         self.collectors: list = []
-        self.sold_artifacts = 0
 
     def register_artifact(self, artifact_type: str, artifact_name: str, artifact_price: float, artifact_space: int):
         if artifact_type not in self.VALID_ARTIFACT_TYPE.keys():
@@ -51,7 +50,6 @@ class AuctionHouseManagerApp:
             collector.available_money -= artifact.price
             collector.available_space -= artifact.space_required
             self.artifacts.remove(artifact)
-            self.sold_artifacts += 1
             return f"{collector.name} purchased {artifact.name} for a price of {artifact.price:.2f}."
         return "Purchase is impossible."
 
@@ -73,7 +71,7 @@ class AuctionHouseManagerApp:
     def get_auction_report(self):
         result = [
             "**Auction statistics**",
-            f"Total number of sold artifacts: {self.sold_artifacts}",
+            f"Total number of sold artifacts: {self.__get_sold_artifacts()}",
             f"Available artifacts for sale: {len(self.artifacts)}",
             "***"
         ]
@@ -88,3 +86,6 @@ class AuctionHouseManagerApp:
 
     def __get_artifact_by_name(self, name):
         return next((a for a in self.artifacts if a.name == name), None)
+
+    def __get_sold_artifacts(self):
+        return sum(len(c.purchased_artifacts) for c in self.collectors)
