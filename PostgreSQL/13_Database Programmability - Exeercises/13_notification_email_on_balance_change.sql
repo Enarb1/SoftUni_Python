@@ -15,7 +15,8 @@ BEGIN
 	VALUES(
 		NEW.account_id,
 		'Balance change for account: ' || NEW.account_id,
-		'On' || DATE(NOW()) || 'your balance was changed from' || NEW.old_sum || 'to' || NEW.new_sum || '.'
+	    CONCAT_WS(' ', 'On', DATE(NOW()), 'your balance was changed from', NEW.old_sum, 'to', NEW.new_sum, '.')
+		--OR 'On' || DATE(NOW()) || 'your balance was changed from' || NEW.old_sum || 'to' || NEW.new_sum || '.'
 	);
 	RETURN NEW;
 END;
