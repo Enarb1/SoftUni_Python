@@ -199,10 +199,3 @@ class Order(models.Model):
         blank=True,
     )
 
-
-
-
-
-
-
-
