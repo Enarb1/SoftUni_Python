@@ -1,6 +1,6 @@
 import os
 from dataclasses import replace
 
-email = "john.doe@university.com"
+text = "Zdvk#wkh#glvkhv$"
 
-replace()
+print("".join(chr(ord(t) - 3) for t in text))
