@@ -81,8 +81,3 @@ class ZooDisplayAnimal(Animal):
             return f"{self.species} is at risk!"
 
         return f"{self.species} is not at risk."
-
-
-
-
-
