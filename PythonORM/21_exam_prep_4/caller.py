@@ -1,12 +1,10 @@
 import os
 from datetime import date
-from multiprocessing import Value
-from pydoc_data.topics import topics
+
 
 import django
-from django.db.models import Q, Count, Sum, Avg, F, When
-from django.forms import DecimalField
-from sqlparse.sql import Case
+from django.db.models import Q, Count, Sum, Avg
+
 
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
