@@ -57,14 +57,6 @@ def populate_db():
 
     print("Database successfully populated with sample data!")
 
-
-# def get_wins():
-#    players = TennisPlayer.objects.get_tennis_players_by_wins_count()
-#
-#    return "\n".join(f"{p.full_name} has won {p.won_matches.count()}" for p in players)
-#
-# print(get_wins())
-
 def get_tennis_players(search_name=None, search_country=None):
 
     if not search_name and not search_country:
