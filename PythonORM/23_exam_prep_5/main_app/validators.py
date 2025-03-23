@@ -15,7 +15,7 @@ class RangeValidator:
     @message.setter
     def message(self, value):
         if value is None:
-            self.__message = f"Value must be between {self.min_value} and {self.max_value}"
+            value= f"Value must be between {self.min_value} and {self.max_value}"
         self.__message = value
 
     def __call__(self, value):
