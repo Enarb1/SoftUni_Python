@@ -10,16 +10,22 @@ class Profile(CreationDateMixin):
 
     full_name = models.CharField(
         max_length=100,
-        validators=[MinLengthValidator(2)]
+        validators=[MinLengthValidator(2)],
+        help_text="User full name"
     )
 
-    email = models.EmailField()
+    email = models.EmailField(
+        help_text="User email",
+    )
 
     phone_number = models.CharField(
         max_length=15,
+        help_text="User phone number",
     )
 
-    address = models.TextField()
+    address = models.TextField(
+        help_text="User address",
+    )
 
     is_active = models.BooleanField(
         default=True
@@ -35,6 +41,7 @@ class Product(CreationDateMixin):
 
     name = models.CharField(
         max_length=100,
+        help_text="Product name"
     )
 
     description = models.TextField()
@@ -42,7 +49,8 @@ class Product(CreationDateMixin):
     price = models.DecimalField(
         decimal_places=2,
         max_digits=10,
-        validators=[MinValueValidator(0.01)]
+        validators=[MinValueValidator(0.01)],
+        help_text="Product price"
     )
 
     in_stock = models.PositiveIntegerField(
